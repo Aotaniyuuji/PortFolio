@@ -4,8 +4,11 @@ class Admin::GamesController < ApplicationController
   end
   def create
     @game = Game.new(game_params)
-    @game.save
-    redirect_to admin_game_path(@game.id)
+    if @game.save
+      redirect_to admin_game_path(@game.id)
+    else
+      redirect_to admin_games_path
+    end
   end
 
   def index

@@ -1,11 +1,17 @@
 登録ゲーム一覧
 <%= form_with url: admin_games_path, model: @game do |f| %>
-  <h4>
+  <div>
+    <%= f.label :genre, "ジャンル" %>
+    <%= f.collection_select :genre_id, Genre.all, :id, :name, {prompt: "選択"} %>
+  </div>
+  <div>
+    <%= f.label :name, "ゲームタイトル" %>
     <%= f.text_field :name %>
-  </h4>
-  <h4>
+  </div>
+  <div>
+    <%= f.label :explanation, "ゲーム概要" %>
     <%= f.text_field :explanation %>
-  </h4>
+  </div>
   <%= f.submit '登録' %>
 <% end %>
 
@@ -15,3 +21,4 @@
 <% end %>
 
 <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+<%= link_to "ジャンル一覧", 

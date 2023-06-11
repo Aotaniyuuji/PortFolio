@@ -1,4 +1,5 @@
-<% form_with model: @game do |f| %>
+登録ゲーム一覧
+<%= form_with url: admin_games_path, model: @game do |f| %>
   <h4>
     <%= f.text_field :name %>
   </h4>
@@ -12,3 +13,5 @@
   <%= game.name %>
   <%= game.explanation %>
 <% end %>
+
+<%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>

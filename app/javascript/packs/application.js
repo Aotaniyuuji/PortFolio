@@ -15,4 +15,4 @@ import "../stylesheets/application";
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-window.$ = window.jQuery = require('jquery');
+// window.$ = window.jQuery = require('jquery');

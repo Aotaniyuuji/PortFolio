@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root :to => "homes#top"
+    get "about" => "homes#about"
     resources :users, only: [:index,:show,:edit,:update]
     resources :genres, only: [:index,:create,:edit,:update]
     resources :games, only: [:index,:new,:create,:show,:edit,:update,:destroy]

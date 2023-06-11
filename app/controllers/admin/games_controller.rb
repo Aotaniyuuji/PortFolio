@@ -5,7 +5,7 @@ class Admin::GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     @game.save
-    redirect_to game_path(@game.id)
+    redirect_to admin_game_path(@game.id)
   end
 
   def index

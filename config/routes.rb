@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
+  devise_scope :admin do
+    get '/admin/sign_out' => 'devise/sessions#destroy'
+  end
+
   namespace :admin do
     root :to => "homes#top"
     get "about" => "homes#about"

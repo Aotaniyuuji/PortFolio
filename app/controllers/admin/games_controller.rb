@@ -1,14 +1,19 @@
 class Admin::GamesController < ApplicationController
   def index
+    @games = Game.all
+    @game = Game.new
   end
   
   def create
+    @game = Game.new(game_params)
   end
   
   def show
+    @game = Game.find(params[:id])
   end
   
   def edit
+    @game = Game.find(params[:id])
   end
   
   def update
@@ -20,6 +25,6 @@ class Admin::GamesController < ApplicationController
   private
   
   def game_params
-    params.require(:game).permit()
+    params.require(:game).permit(:name,:explanation)
   end
 end

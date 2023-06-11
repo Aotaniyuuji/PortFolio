@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(version: 2023_06_10_092145) do
     t.integer "genre_id", null: false
     t.string "name", null: false
     t.text "explanation", null: false
-    t.integer "all_rating", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["genre_id"], name: "index_games_on_genre_id"

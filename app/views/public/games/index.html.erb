@@ -2,6 +2,14 @@
   <div class="row">
     <div class="col mx-auto">
       <h3 class="mt-5">ゲーム一覧</h3>
+      <div class="text-center">
+        <% @games.each do |game| %>
+          <%= link_to game_path(game.id) do %>
+            <%= game.name %>
+          <% end %>
+          <%= game.explanation %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

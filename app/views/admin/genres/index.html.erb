@@ -24,7 +24,11 @@
     <!--ジャンル一覧の表示-->
   <div class="row">
     <% @genres.each do |genre| %>
-      <%= genre.name %>
+      <ul>
+        <li>
+          <%= genre.name %>
+        </li>
+      </ul>
     <% end %>
   </div>
 </div>

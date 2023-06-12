@@ -27,8 +27,9 @@ Rails.application.routes.draw do
     root :to => "homes#top"
     get "about" => "homes#about"
     resources :users, only: [:show,:edit,:update]
-    resources :games, only: [:index,:show]
-    resources :reviews, only: [:new,:create,:show,:edit,:update]
+    resources :games, only: [:index,:show] do
+      resources :reviews, only: [:create,:show,:edit,:update]
+    end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

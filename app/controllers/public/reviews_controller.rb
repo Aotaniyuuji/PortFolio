@@ -1,5 +1,5 @@
 class Public::ReviewsController < ApplicationController
-  # before_action :is_user_signed_in?
+  before_action :authenticate_user!, only: [:create,:destroy]
   def create
     game = Game.find(params[:game_id])
     review = current_user.reviews.new(review_params)
@@ -8,15 +8,6 @@ class Public::ReviewsController < ApplicationController
       review.save
       redirect_to game_path(game)
     end
-  end
-
-  def show
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   def destroy
@@ -29,6 +20,4 @@ class Public::ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:comment,:user_id,:game_id)
   end
-
-
 end

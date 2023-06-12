@@ -25,6 +25,7 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
+                <p><%= flash[:notice] %></p>
                 <li class="nav-item">
                   <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark' %>
                 </li>
@@ -56,6 +57,9 @@
                 </li>
                 <li class="nav-item">
                   <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+                </li>
+                <li>
+                  <%= link_to 'ゲストログイン', users_guest_sign_in_path, class: "nav-link text-dark", method: :post %>
                 </li>
               <% end %>
             </ul>

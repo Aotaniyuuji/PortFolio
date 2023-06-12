@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   }
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 
   devise_scope :admin do
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
     get "about" => "homes#about"
     resources :users, only: [:show,:edit,:update]
     resources :games, only: [:index,:show] do
-      resources :reviews, only: [:create,:show,:edit,:update,:destroy]
+      resources :reviews, only: [:create,:destroy]
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

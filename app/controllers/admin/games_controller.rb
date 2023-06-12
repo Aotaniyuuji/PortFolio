@@ -33,6 +33,6 @@ class Admin::GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:name,:explanation)
+    params.require(:game).permit(:name,:explanation,:genre_id)
   end
 end

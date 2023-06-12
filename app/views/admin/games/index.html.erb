@@ -2,6 +2,14 @@
   <div class="row">
     <div class="col mx-auto">
       <h3 class="mt-5">登録ゲーム一覧</h3>
+      <% if @game.errors.any? %>
+        <%= @game.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @game.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
       <%= form_with url: admin_games_path, model: @game do |f| %>
         <div>
           <%= f.label :genre, "ジャンル" %>
@@ -18,10 +26,13 @@
         <%= f.submit '登録', class:"btn btn-success" %>
       <% end %>
 
-      <% @games.each do |game| %>
-        <%= game.name %>
-        <%= game.explanation %>
-      <% end %>
+      <div>
+        <% @games.each do |game| %>
+          <%= game.name %>
+          <%= game.explanation %>
+          <%= game.genre.name %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

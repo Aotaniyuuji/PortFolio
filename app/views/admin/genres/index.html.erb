@@ -2,6 +2,14 @@
   <div class="row">
     <div class="col text-center mx-auto">
       <h3 class="mt-5">ジャンル一覧・追加</h3>
+      <% if @genre.errors.any? %>
+        <%= @genre.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @genre.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
       <!--ジャンルの新規登録-->
       <%= form_with url: admin_genres_path, model: @genre do |f| %>
 

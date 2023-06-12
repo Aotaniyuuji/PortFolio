@@ -44,6 +44,23 @@
         <div class="mt-5 text-center">
           <p><%= comment.user.name %></p>
           <%= comment.comment %>
+          <div id="star-rate<%= comment.id %>"></div>
+          <script>
+              $(document).on('turbolinks:load', function() {
+                let elem = document.querySelector('#star-rate<%= comment.id %>');
+                if (elem == null) return;
+
+                elem.innerHTML = ""
+                let opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  score: <%= comment.star %>,
+                  readOnly: true
+                };
+                raty(elem, opt);
+              });
+            </script>
           <% if comment.user == current_user %>
             <%= link_to "削除", game_review_path(comment.game, comment), method: :delete %>
           <% end %>

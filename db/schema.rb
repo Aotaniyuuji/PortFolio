@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2023_06_10_092145) do
     t.integer "genre_id", null: false
     t.string "name", null: false
     t.text "explanation", null: false
+    t.float "all_rating"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["genre_id"], name: "index_games_on_genre_id"
@@ -70,6 +71,7 @@ ActiveRecord::Schema.define(version: 2023_06_10_092145) do
   create_table "reviews", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "game_id", null: false
+    t.float "rating", null: false
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

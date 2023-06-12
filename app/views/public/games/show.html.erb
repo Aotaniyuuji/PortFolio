@@ -8,9 +8,35 @@
 
       <div class="mt-5 text-center">
         <%= form_with model: [@game, @review] do |f| %>
-          <%= f.label :comment, "レビューコメント" %><br>
-          <%= f.text_area :comment, rows: '3',placeholder: "コメント" %><br>
-          <%= f.submit "送信", class: 'btn btn-primary' %>
+          <div class="form-group">
+            <%= f.label :comment, "レビューコメント" %><br>
+            <%= f.text_area :comment, rows: '3',placeholder: "コメント" %><br>
+          </div>
+          <% if @review.id.nil? %>
+            <div class="form-group" id="star">
+              <%= f.label :star, "評価" %>
+              <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
+              <div id="post_raty"></div>
+            </div>
+            <script>
+              $(document).on('turbolinks:load', function() {
+                let elem = document.querySelector('#post_raty');
+                if (elem == null) return;
+
+                elem.innerHTML = ""
+                let opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  scoreName: 'review[star]',
+                };
+                raty(elem, opt);
+              });
+            </script>
+          <% end %>
+          <div class="form-group">
+            <%= f.submit "送信", class: 'btn btn-primary' %>
+          </div>
         <% end %>
       </div>
 

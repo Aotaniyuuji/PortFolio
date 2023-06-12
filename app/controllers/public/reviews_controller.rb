@@ -19,6 +19,11 @@ class Public::ReviewsController < ApplicationController
   def update
   end
 
+  def destroy
+    Review.find(params[:id]).destroy
+    redirect_to game_path(params[:game_id])
+  end
+
   private
 
   def review_params

@@ -16,8 +16,11 @@
 
       <% @game.reviews.each do |comment| %>
         <div class="mt-5 text-center">
-          <%= comment.user.name %>
+          <p><%= comment.user.name %></p>
           <%= comment.comment %>
+          <% if comment.user == current_user %>
+            <%= link_to "削除", game_review_path(comment.game, comment), method: :delete %>
+          <% end %>
         </div>
       <% end %>
     </div>

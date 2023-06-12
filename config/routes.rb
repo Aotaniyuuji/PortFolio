@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     get "about" => "homes#about"
     resources :users, only: [:show,:edit,:update]
     resources :games, only: [:index,:show] do
-      resources :reviews, only: [:create,:show,:edit,:update]
+      resources :reviews, only: [:create,:show,:edit,:update,:destroy]
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

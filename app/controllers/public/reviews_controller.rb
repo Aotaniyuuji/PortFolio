@@ -2,7 +2,7 @@ class Public::ReviewsController < ApplicationController
   # before_action :is_user_signed_in?
   def create
     game = Game.find(params[:game_id])
-    review = current_user.Review.new(review_params)
+    review = current_user.reviews.new(review_params)
     review.game_id = game.id
     if review.user_id = current_user.id
       review.save

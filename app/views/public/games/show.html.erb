@@ -6,13 +6,20 @@
         <%= @game.explanation %>
       </div>
 
-      <div>
+      <div class="mt-5 text-center">
         <%= form_with model: [@game, @review] do |f| %>
-          <%= f.label :comment, "レビューコメント" %>
-          <%= f.text_area :comment, rows: '3',placeholder: "コメント" %>
+          <%= f.label :comment, "レビューコメント" %><br>
+          <%= f.text_area :comment, rows: '3',placeholder: "コメント" %><br>
           <%= f.submit "送信", class: 'btn btn-primary' %>
         <% end %>
       </div>
+
+      <% @game.reviews.each do |comment| %>
+        <div class="mt-5 text-center">
+          <%= comment.user.name %>
+          <%= comment.comment %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

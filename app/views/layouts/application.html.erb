@@ -19,13 +19,14 @@
             <i class="fas fa-home"></i>
             HOME
           </a>
+          <%= render "public/searches/search" %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
-                <p><%= flash[:notice] %></p>
+                <p class="text-light"><%= flash[:notice] %></p>
                 <li class="nav-item">
                   <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-light' %>
                 </li>

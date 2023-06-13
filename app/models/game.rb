@@ -7,4 +7,14 @@ class Game < ApplicationRecord
 
   validates :name, presence: true, length: {maximum: 50}, uniqueness: true
   validates :explanation, presence: true
+
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @game = Game.where("name LIKE?","#{word}")
+    elsif search == "partial_match"
+      @game = Game.where("name LIKE?","%#{word}%")
+    else
+      @game = Game.all
+    end
+  end
 end

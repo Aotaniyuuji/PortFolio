@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     get '/admin/sign_out' => 'devise/sessions#destroy'
   end
 
+  get "search" => "searches#search"
+  get "search" => "search#"
+
   namespace :admin do
     root :to => "homes#top"
     get "about" => "homes#about"

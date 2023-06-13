@@ -4,9 +4,13 @@
       <h3 class="mt-5 text-center">ゲーム一覧</h3>
       <div class="mt-5 text-center">
         <% @games.each do |game| %>
+          <span>タイトル</span>
           <%= link_to game_path(game.id) do %>
-            <%= game.name %>
+            <strong><%= game.name %></strong><br>
           <% end %>
+          <span>ジャンル</span>
+          <%= game.genre.name %><br>
+          <span>概要</span>
           <%= game.explanation %>
         <% end %>
       </div>

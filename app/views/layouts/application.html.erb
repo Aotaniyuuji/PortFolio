@@ -13,7 +13,7 @@
 
   <body class="d-flex flex-column vh-100">
     <header class="shadow-sm">
-      <nav class="navbar navbar-expand-lg navbar-light">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
           <a class="navbar-brand p-3" href="/">
             <i class="fas fa-home"></i>
@@ -27,39 +27,39 @@
               <% if user_signed_in? %>
                 <p><%= flash[:notice] %></p>
                 <li class="nav-item">
-                  <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark' %>
+                  <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-light' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'ゲーム一覧', games_path, class: 'nav-link text-dark' %>
+                  <%= link_to 'ゲーム一覧', games_path, class: 'nav-link text-light' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
                 </li>
               <% elsif admin_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to '概要', about_path, class: 'nav-link text-dark' %>
+                  <%= link_to '概要', about_path, class: 'nav-link text-light' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'ジャンル', admin_genres_path, class: 'nav-link text-dark' %>
+                  <%= link_to 'ジャンル', admin_genres_path, class: 'nav-link text-light' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'ゲーム一覧', admin_games_path, class: 'nav-link text-dark' %>
+                  <%= link_to 'ゲーム一覧', admin_games_path, class: 'nav-link text-light' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'ログアウト', destroy_admin_session_path, class: 'nav-link text-dark' %>
+                  <%= link_to 'ログアウト', destroy_admin_session_path, class: 'nav-link text-light' %>
                 </li>
               <% else %>
                 <li class="nav-item">
-                  <%= link_to "概要", about_path, class: 'nav-link text-dark' %>
+                  <%= link_to "概要", about_path, class: 'nav-link text-light' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+                  <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light' %>
                 </li>
                 <li>
-                  <%= link_to 'ゲストログイン', users_guest_sign_in_path, class: "nav-link text-dark", method: :post %>
+                  <%= link_to 'ゲストログイン', users_guest_sign_in_path, class: "nav-link text-light", method: :post %>
                 </li>
               <% end %>
             </ul>

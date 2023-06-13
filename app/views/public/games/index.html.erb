@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col mx-auto">
-      <h3 class="mt-5">ゲーム一覧</h3>
-      <div class="text-center">
+      <h3 class="mt-5 text-center">ゲーム一覧</h3>
+      <div class="mt-5 text-center">
         <% @games.each do |game| %>
           <%= link_to game_path(game.id) do %>
             <%= game.name %>

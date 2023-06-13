@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col mx-auto">
-      <h3 class="mt-5">登録ゲーム一覧</h3>
+      <h3 class="mt-5">登録ゲーム一覧・追加</h3>
       <% if @game.errors.any? %>
         <%= @game.errors.count %>件のエラーが発生しました
         <ul>
@@ -11,28 +11,44 @@
         </ul>
       <% end %>
       <%= form_with url: admin_games_path, model: @game do |f| %>
-        <div>
+        <div class="form-group">
           <%= f.label :genre, "ジャンル" %>
           <%= f.collection_select :genre_id, Genre.all, :id, :name, {prompt: "選択"} %>
         </div>
-        <div>
+        <div class="form-group">
           <%= f.label :name, "ゲームタイトル" %>
           <%= f.text_field :name %>
         </div>
-        <div>
+        <div class="form-group">
           <%= f.label :explanation, "ゲーム概要" %>
-          <%= f.text_field :explanation %>
+          <%= f.text_area :explanation, rows: '3' %>
         </div>
         <%= f.submit '登録', class:"btn btn-success" %>
       <% end %>
 
-      <div>
-        <% @games.each do |game| %>
-          <%= game.name %>
-          <%= game.explanation %>
-          <%= game.genre.name %>
-        <% end %>
-      </div>
+
+        <table class="table table-hover table-borderless">
+          <thead>
+            <tr>
+              <th>タイトル</th>
+              <th>ジャンル</th>
+              <th>概要</th>
+            </tr>
+          </thead>
+          <% @games.each do |game| %>
+          <tbody>
+            <tr>
+              <td>
+                <%= link_to admin_game_path(game.id) do %>
+                  <%= game.name %>
+                <% end %>
+                </td>
+              <td><%= game.genre.name %></td>
+              <td><%= game.explanation %></td>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
     </div>
   </div>
 </div>

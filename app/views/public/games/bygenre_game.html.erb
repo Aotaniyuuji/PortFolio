@@ -1,0 +1,9 @@
+<div class="container">
+<h2><%= @game.genre.name %></h2>
+  <% @game.each do |game| %>
+    <div class="burger">
+      <%= game.name %>
+      <%= game.explanation %>
+    </div>
+  <% end %>
+</div>

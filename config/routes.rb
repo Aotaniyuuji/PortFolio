@@ -34,5 +34,6 @@ Rails.application.routes.draw do
   end
 
   get "search" => "public/searches#search"
+  get "bygenre_game" => "public/games#bygenre_game"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

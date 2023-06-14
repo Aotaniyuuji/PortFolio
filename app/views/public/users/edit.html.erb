@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col mx-auto">
+      <h3 class="mt-5 text-center">編集ページ</h3>
+      <div class="mt-5 text-center">
+      <%= form_with(model: @user, url: user_path(@user.id), method: :patch) do |f| %>
+        <%= f.label :name, "名前" %>
+        <%= f.text_field :name %>
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.text_field :email %>
+        <%= f.submit "変更を保存", class: "btn btn-success" %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

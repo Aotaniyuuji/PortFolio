@@ -3,7 +3,9 @@
   <% genres.each do |genre| %>
     <ul>
       <li>
+        <%= link_to bygenre_game_path do %>
         <%= genre.name %>
+        <% end %>
       </li>
     </ul>
   <% end %>

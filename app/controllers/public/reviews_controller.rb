@@ -10,6 +10,14 @@ class Public::ReviewsController < ApplicationController
     end
   end
 
+  def edit
+    @review = Review.find(params[:id])
+  end
+
+  def update
+
+  end
+
   def destroy
     Review.find(params[:id]).destroy
     redirect_to game_path(params[:game_id])

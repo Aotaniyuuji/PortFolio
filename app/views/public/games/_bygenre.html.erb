@@ -3,7 +3,7 @@
   <% genres.each do |genre| %>
     <ul class="list-unstyled">
       <li>
-        <%= link_to bygenre_game_path do %>
+        <%= link_to games_path(genre_id: genre.id) do %>
           <div class="text-dark"><%= genre.name %></div>
         <% end %>
       </li>

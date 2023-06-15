@@ -1,7 +1,11 @@
 class Public::GamesController < ApplicationController
   def index
     @genres = Genre.all
-    @games = Game.all
+    if Game.where(genre_id: params[:genre_id])
+      @games = Game.where(genre_id: params[:genre_id])
+    else
+      @games = Game.all
+    end
   end
 
   def show
@@ -9,11 +13,4 @@ class Public::GamesController < ApplicationController
     @reviews = Review.all
     @review = Review.new
   end
-
-  def bygenre_game
-    @genres = Genre.all
-    @game = Genre.where(name: "RPG")
-    @games = Game.all
-  end
-
 end

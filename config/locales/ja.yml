@@ -1,0 +1,5 @@
+ja:
+  activerecord:
+  review:
+    title: "タイトル"
+    comment: "コメント"

@@ -4,31 +4,18 @@
     <%= render "bygenre", genres: @genres %>
 
     <div class="col-md-8 mx-auto">
-      <h3 class="mt-5 text-center">ゲーム一覧</h3>
-      <div class="mt-5 text-center">
-        <table class="table table-hover table-inverse table-bordered">
-          <thead>
-            <tr>
-              <th>タイトル</th>
-              <th>ジャンル</th>
-              <th>概要</th>
-            </tr>
-          </thead>
-          <% @games.each do |game| %>
-            <tbody>
-              <tr>
-                <td>
-                  <%= link_to game_path(game.id) do %>
-                    <strong class="text-dark"><%= game.name %></strong>
-                  <% end %>
-                </td>
-                <td><%= game.genre.name %></td>
-                <td><%= game.explanation %></td>
-              </tr>
-            </tbody>
-          <% end %>
-        </table>
-      </div>
+      <h3 class="my-5 text-center">ゲーム一覧</h3>
+      <% @games.each do |game| %>
+        <div class="d-flex flex-wrap">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"><%= game.name %></h5>
+              <p class="card-text"><%= game.explanation %></p>
+              <div class="d-inline"><%= link_to "詳細へ", game_path(game.id) %></div>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

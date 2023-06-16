@@ -6,6 +6,7 @@ class Public::ReviewsController < ApplicationController
     review.game_id = game.id
     if review.user_id = current_user.id
       review.save
+      flash[:success] = "投稿しました"
       redirect_to game_path(game)
     end
   end

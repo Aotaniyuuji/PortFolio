@@ -1,5 +1,6 @@
 class Public::ReviewsController < ApplicationController
-  before_action :authenticate_user!, only: [:create,:destroy]
+  before_action :authenticate_user!, only: [:create,:update,:destroy]
+  before_action :is_matching_login_user, only: [:update,:destroy]
   def create
     game = Game.find(params[:game_id])
     review = current_user.reviews.new(review_params)
@@ -29,5 +30,12 @@ class Public::ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:title,:comment,:star,:user_id,:game_id)
+  end
+
+  def is_matching_login_user
+    review = Review.find(params[:id])
+    unless review.user_id == current_user.id
+      render :edit
+    end
   end
 end

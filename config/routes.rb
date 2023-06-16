@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index,:show,:edit,:update]
     resources :genres, only: [:index,:create,:edit,:update]
     resources :games, only: [:index,:new,:create,:show,:edit,:update,:destroy]
-    resources :reviews, only: [:show,:destroy]
+    resources :reviews, only: [:show,:edit,:update,:destroy]
   end
 
   scope module: :public do

@@ -21,6 +21,7 @@ class Public::ReviewsController < ApplicationController
 
   def destroy
     Review.find(params[:id]).destroy
+    flash[:success] = "レビューを削除しました"
     redirect_to game_path(params[:game_id])
   end
 

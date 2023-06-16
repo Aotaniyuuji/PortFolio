@@ -10,6 +10,21 @@
         <h2><%= @game.name %></h2>
         <h5>ジャンル：<%= @game.genre.name %></h5>
         <p><%= @game.explanation %></p>
+        <div id="star-rate<%= @game.id %>">
+          <p>レビュー<%= @game.reviews.count %>件</p>
+        </div>
+        <script>
+          $('#star-rate<%= @game.id%>').raty({
+            size      : 36,
+            starOff   : '<%= asset_path('star-off.png') %>',
+            starOn    : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= @game.reviews.average(:star).to_f.round(1) %>,
+            //↑ 平均点を算出し、round関数で切り上げる
+          });
+        </script>
       </div>
 
       <div class="col-md-8 mx-auto mt-5 text-center">

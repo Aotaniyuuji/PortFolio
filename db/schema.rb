@@ -72,7 +72,8 @@ ActiveRecord::Schema.define(version: 2023_06_10_092145) do
     t.integer "user_id", null: false
     t.integer "game_id", null: false
     t.float "star", null: false
-    t.text "comment"
+    t.string "title", null: false
+    t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["game_id"], name: "index_reviews_on_game_id"

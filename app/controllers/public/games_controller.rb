@@ -10,6 +10,7 @@ class Public::GamesController < ApplicationController
   end
 
   def show
+    @genres = Genre.all
     @game = Game.find(params[:id])
     @reviews = Review.all
     @review = Review.new

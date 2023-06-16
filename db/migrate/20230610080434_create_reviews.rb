@@ -4,7 +4,8 @@ class CreateReviews < ActiveRecord::Migration[6.1]
       t.references :user, foreign_key: true, null: false
       t.references :game, foreign_key: true, null: false
       t.float :star, null: false
-      t.text :comment
+      t.string :title, null: false
+      t.text :comment, null: false
 
       t.timestamps
     end

@@ -1,70 +1,87 @@
 <div class="container">
   <div class="row">
-    <div class="col mx-auto">
+    <!--ジャンルリストの部分テンプレート-->
+    <%= render "bygenre", genres: @genres %>
+
+    <div class="col-md-8 mx-auto">
       <div class="mt-5 text-center">
-        <p><%= @game.name %></p>
-        <%= @game.explanation %>
+        <h2><%= @game.name %></h2>
+        <h5>ジャンル：<%= @game.genre.name %></h5>
+        <p><%= @game.explanation %></p>
       </div>
 
       <div class="mt-5 text-center">
-        <%= form_with model: [@game, @review] do |f| %>
-          <div class="form-group">
-            <%= f.label :comment, "レビューコメント" %><br>
-            <%= f.text_area :comment, rows: '3',placeholder: "コメント" %><br>
-          </div>
-          <% if @review.id.nil? %>
-            <div class="form-group" id="star">
-              <%= f.label :star, "評価" %>
-              <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
-              <div id="post_raty"></div>
+        <%# if current_user.reviews.nil? %>
+          <%= form_with model: [@game, @review] do |f| %>
+            <div class="form-group">
+              <%= f.label :title, "レビュータイトル" %>
+              <%= f.text_field :title, placeholder: "タイトル" %>
             </div>
-            <script>
-              $(document).on('turbolinks:load', function() {
-                let elem = document.querySelector('#post_raty');
-                if (elem == null) return;
+            <div class="form-group">
+              <%= f.label :comment, "レビューコメント" %>
+              <%= f.text_area :comment, rows: '3',placeholder: "コメント" %><br>
+            </div>
+            <% if @review.id.nil? %>
+              <div class="form-group" id="star">
+                <%= f.label :star, "評価" %>
+                <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
+                <span id="post_raty"></span>
+              </div>
+              <script>
+                $(document).on('turbolinks:load', function() {
+                  let elem = document.querySelector('#post_raty');
+                  if (elem == null) return;
 
-                elem.innerHTML = ""
-                let opt = {
-                  starOn: "<%= asset_path('star-on.png') %>",
-                  starOff: "<%= asset_path('star-off.png') %>",
-                  starHalf: "<%= asset_path('star-half.png') %>",
-                  scoreName: 'review[star]',
-                };
-                raty(elem, opt);
-              });
-            </script>
+                  elem.innerHTML = ""
+                  let opt = {
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    scoreName: 'review[star]',
+                  };
+                  raty(elem, opt);
+                });
+              </script>
+            <% end %>
+            <div class="form-group">
+              <%= f.submit "送信する", class: 'btn btn-primary' %>
+            </div>
           <% end %>
-          <div class="form-group">
-            <%= f.submit "送信", class: 'btn btn-primary' %>
-          </div>
-        <% end %>
+        <%# end %>
       </div>
 
-      <% @game.reviews.each do |comment| %>
-        <div class="mt-5 text-center">
-          <p><%= comment.user.name %></p>
-          <%= comment.comment %>
-          <div id="star-rate<%= comment.id %>"></div>
-          <script>
-              $(document).on('turbolinks:load', function() {
-                let elem = document.querySelector('#star-rate<%= comment.id %>');
-                if (elem == null) return;
+      <% @game.reviews.each do |review| %>
+      <table class="table table-bordered">
+        <tr>
+          <div class="mt-5 text-center">
+            <p><%= review.user.name %></p>
+            <%= review.title %>
+            <%= review.comment %>
+            <div id="star-rate<%= review.id %>"></div>
+            <script>
+                $(document).on('turbolinks:load', function() {
+                  let elem = document.querySelector('#star-rate<%= review.id %>');
+                  if (elem == null) return;
 
-                elem.innerHTML = ""
-                let opt = {
-                  starOn: "<%= asset_path('star-on.png') %>",
-                  starOff: "<%= asset_path('star-off.png') %>",
-                  starHalf: "<%= asset_path('star-half.png') %>",
-                  score: <%= comment.star %>,
-                  readOnly: true
-                };
-                raty(elem, opt);
-              });
-            </script>
-          <% if comment.user == current_user %>
-            <%= link_to "削除", game_review_path(comment.game, comment), method: :delete %>
-          <% end %>
-        </div>
+                  elem.innerHTML = ""
+                  let opt = {
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    score: <%= review.star %>,
+                    readOnly: true
+                  };
+                  raty(elem, opt);
+                });
+              </script>
+            <% if review.user == current_user %>
+              <%= link_to game_review_path(review.game, review), method: :delete do %>
+                <button class="btn btn-danger">削除</button>
+              <% end %>
+            <% end %>
+          </div>
+        </tr>
+      </table>
       <% end %>
     </div>
   </div>

@@ -3,11 +3,11 @@
     <!--ジャンルリストの部分テンプレート-->
     <%= render "bygenre", genres: @genres %>
 
-    <div class="col-md-8 mx-auto">
+    <div class="col-md-9 mx-auto">
       <h3 class="my-5 text-center">ゲーム一覧</h3>
       <% @games.each do |game| %>
-        <div class="d-flex flex-wrap">
-          <div class="card" style="width: 18rem;">
+        <div class="card-group">
+          <div class="card" style="width: 20rem;">
             <div class="card-body">
               <h5 class="card-title"><%= game.name %></h5>
               <p class="card-text"><%= game.explanation %></p>

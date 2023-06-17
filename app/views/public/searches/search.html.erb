@@ -1,17 +1,52 @@
-<h2>検索結果</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <h2 class="mt-5">検索結果</h2>
 
-<table class="table table-hover table-inverse">
-  <tbody>
-    <% @games.each do |game| %>
-      <tr>
-        <td>
-          <%= link_to game_path(game) do %>
-            <%= game.name %>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>概要</th>
+            <th>評価</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @games.each do |game| %>
+            <tr>
+              <td>
+                <%= link_to game_path(game) do %>
+                  <%= game.name %>
+                <% end %>
+              </td>
+              <td><%= game.explanation %></td>
+              <td>
+                <script>
+                  $(document).on('turbolinks:load', function() {
+                    let elem = document.querySelector('#star-rate<%= game.id%>');
+                    if (elem == null) return;
+
+                    elem.innerHTML = ""
+                    let opt = {
+                      starOn: "<%= asset_path('star-on.png') %>",
+                      starOff: "<%= asset_path('star-off.png') %>",
+                      starHalf: "<%= asset_path('star-half.png') %>",
+                      half: true,
+                      readOnly: true,
+                      score: <%= game.reviews.average(:star).to_f.round(1) %>,
+                       //↑ 平均点を算出し、round関数で切り上げる
+                    };
+                    raty(elem, opt);
+                  });
+                </script>
+              </td>
+              <td>レビュー件数：<%= game.reviews.count %></td>
+            </tr>
           <% end %>
-        </td>
-        <td><%= game.explanation %></td>
-        <td>レビュー件数：<%= game.reviews.count %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

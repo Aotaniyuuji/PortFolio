@@ -4,7 +4,11 @@
   <tbody>
     <% @games.each do |game| %>
       <tr>
-        <td><%= game.name %></td>
+        <td>
+          <%= link_to game_path(game) do %>
+            <%= game.name %>
+          <% end %>
+        </td>
         <td><%= game.explanation %></td>
         <td>レビュー件数：<%= game.reviews.count %></td>
       </tr>

@@ -1,19 +1,21 @@
 <div class="container">
   <div class="row">
     <div class="col mx-auto">
+      <%= flash[:success] %>
       <h3 class="mt-5 text-center">ゲーム詳細</h3>
-    </div>
-    
-    <div class="col mx-auto">
       <table class="table table-nover table-borderless">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>概要</th>
+            <th>レビュー件数</th>
+          </tr>
+        </thead>
         <tbody>
           <tr>
-            <td>タイトル</td>
             <td><%= @game.name %></td>
-          </tr>
-          <tr>
-            <td>概要</td>
             <td><%= @game.explanation %></td>
+            <td><%= @game.reviews.count %></td>
           </tr>
         </tbody>
       </table>

@@ -3,35 +3,39 @@
     <!--ジャンルリストの部分テンプレート-->
     <%= render "bygenre", genres: @genres %>
     <div class="col-md-8 mx-auto">
-      <p class="alert alert-success text-center">
-        <%= flash[:success] %><button type="button" class="close" data-dismiss="alert">&times;</button>
-      </p>
-      <div class="mt-5 text-center">
-        <h2><%= @game.name %></h2>
-        <h5>ジャンル：<%= @game.genre.name %></h5>
-        <p><%= @game.explanation %></p>
-        <div id="star-rate<%= @game.id %>">
-          <p>レビュー<%= @game.reviews.count %>件</p>
-        </div>
-        <script>
-          $(document).on('turbolinks:load', function() {
-            let elem = document.querySelector('#star-rate<%= @game.id%>');
-            if (elem == null) return;
+      <header class="article-header entry-header">
+        <h2 class="mt-5">バイオハザードRE：４</h2>
+        <p class="alert alert-success text-center">
+          <%= flash[:success] %><button type="button" class="close" data-dismiss="alert">&times;</button>
+        </p>
+        <div class="mt-5 text-center">
+          <h2><%= @game.name %></h2>
+          <h5>ジャンル：<%= @game.genre.name %></h5>
+          <p><%= @game.explanation %></p>
+          <div id="star-rate<%= @game.id %>">
+            <p>レビュー<%= @game.reviews.count %>件</p>
+          </div>
+          <script>
+            $(document).on('turbolinks:load', function() {
+              let elem = document.querySelector('#star-rate<%= @game.id%>');
+              if (elem == null) return;
 
-            elem.innerHTML = ""
-            let opt = {
-              starOn: "<%= asset_path('star-on.png') %>",
-              starOff: "<%= asset_path('star-off.png') %>",
-              starHalf: "<%= asset_path('star-half.png') %>",
-              half: true,
-              readOnly: true,
-              score: <%= @game.reviews.average(:star).to_f.round(1) %>,
-               //↑ 平均点を算出し、round関数で切り上げる
-            };
-            raty(elem, opt);
-          });
-        </script>
-      </div>
+              elem.innerHTML = ""
+              let opt = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                half: true,
+                readOnly: true,
+                score: <%= @game.reviews.average(:star).to_f.round(1) %>,
+                 //↑ 平均点を算出し、round関数で切り上げる
+              };
+              raty(elem, opt);
+            });
+          </script>
+        </div>
+      </header>
+
 
       <div class="col-md-8 mx-auto mt-5 text-center">
         <%# if current_user.reviews.nil? %>

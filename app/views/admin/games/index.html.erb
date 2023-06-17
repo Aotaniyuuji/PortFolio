@@ -33,6 +33,7 @@
               <th>タイトル</th>
               <th>ジャンル</th>
               <th>概要</th>
+              <th></th>
             </tr>
           </thead>
           <% @games.each do |game| %>
@@ -45,6 +46,7 @@
                 </td>
               <td><%= game.genre.name %></td>
               <td><%= game.explanation %></td>
+              <td><%= link_to '編集する', edit_admin_game_path(game), class: "btn btn-success" %></td>
             </tr>
           </tbody>
           <% end %>

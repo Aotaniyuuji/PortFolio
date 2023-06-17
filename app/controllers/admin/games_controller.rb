@@ -25,6 +25,14 @@ class Admin::GamesController < ApplicationController
   end
 
   def update
+    game = Game.find(params[:id])
+    if game.update(game_params)
+      flash[:success] = "編集に成功しました"
+      redirect_to admin_game_path(game)
+    else
+      flash[:danger] = "編集に失敗しました"
+      render :edit
+    end
   end
 
   def destroy

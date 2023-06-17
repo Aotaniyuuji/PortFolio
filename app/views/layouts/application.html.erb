@@ -28,6 +28,9 @@
               <% if user_signed_in? %>
                 <p class="text-light"><%= flash[:notice] %></p>
                 <li class="nav-item">
+                  <%= link_to 'About', about_path, class: 'nav-link text-light' %>
+                </li>
+                <li class="nav-item">
                   <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-light' %>
                 </li>
                 <li class="nav-item">

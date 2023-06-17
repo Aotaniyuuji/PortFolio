@@ -2,10 +2,10 @@ class Public::GamesController < ApplicationController
   def index
     @genres = Genre.all
 # 絞り込み条件によって条件分岐
+    @games = Game.all
+
     if Game.where(genre_id: params[:genre_id])
       @games = Game.where(genre_id: params[:genre_id])
-    else
-      @games = Game.all
     end
   end
 

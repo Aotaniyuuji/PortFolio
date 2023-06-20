@@ -1,24 +1,75 @@
 <div class="container">
   <div class="row">
-    <div class="col mx-auto">
-      <%= flash[:success] %>
-      <h3 class="mt-5 text-center">ゲーム詳細</h3>
-      <table class="table table-nover table-borderless">
-        <thead>
-          <tr>
-            <th>タイトル</th>
-            <th>概要</th>
-            <th>レビュー件数</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= @game.name %></td>
-            <td><%= @game.explanation %></td>
-            <td><%= @game.reviews.count %></td>
-          </tr>
-        </tbody>
+    <!--ジャンルリストの部分テンプレート-->
+    <%= render "public/games/bygenre", genres: @genres %>
+    <div class="col-md-8 mx-auto">
+      <header class="article-header entry-header">
+        <h2 class="mt-5 text-center"><%= @game.name %></h2>
+        <p class="alert alert-success text-center">
+          <%= flash[:success] %><button type="button" class="close" data-dismiss="alert">&times;</button>
+        </p>
+        <div class="mt-5 text-center">
+          <h5>ジャンル：<%= @game.genre.name %></h5>
+          <p><%= @game.explanation %></p>
+          <div id="star-rate<%= @game.id %>">
+            <p>レビュー<%= @game.reviews.count %>件</p>
+          </div>
+          <script>
+            $(document).on('turbolinks:load', function() {
+              let elem = document.querySelector('#star-rate<%= @game.id%>');
+              if (elem == null) return;
+
+              elem.innerHTML = ""
+              let opt = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                half: true,
+                readOnly: true,
+                score: <%= @game.reviews.average(:star).to_f.round(1) %>,
+                 //↑ 平均点を算出し、round関数で切り上げる
+              };
+              raty(elem, opt);
+            });
+          </script>
+        </div>
+      </header>
+
+
+      <% @game.reviews.each do |review| %>
+      <table class="table table-bordered">
+        <tr>
+          <div class="mt-5 text-center">
+            <p><%= review.user.name %></p>
+            <%= review.title %>
+            <%= review.comment %>
+            <div id="star-rate<%= review.id %>"></div>
+            <script>
+                $(document).on('turbolinks:load', function() {
+                  let elem = document.querySelector('#star-rate<%= review.id %>');
+                  if (elem == null) return;
+
+                  elem.innerHTML = ""
+                  let opt = {
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    score: <%= review.star %>,
+                    readOnly: true
+                  };
+                  raty(elem, opt);
+                });
+              </script>
+            <% if admin_signed_in? %>
+              <%= link_to game_review_path(review.game, review), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } do %>
+                <button class="btn btn-danger">削除</button>
+              <% end %>
+
+            <% end %>
+          </div>
+        </tr>
       </table>
+      <% end %>
     </div>
   </div>
 </div>

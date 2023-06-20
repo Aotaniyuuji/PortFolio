@@ -1,15 +1,21 @@
 <div class="container">
   <div class="row">
+
     <!--ジャンルリストの部分テンプレート-->
     <%= render "bygenre", genres: @genres %>
     <div class="col-md-8 mx-auto">
       <header class="article-header entry-header">
-        <h2 class="mt-5">バイオハザードRE：４</h2>
-        <p class="alert alert-success text-center">
-          <%= flash[:success] %><button type="button" class="close" data-dismiss="alert">&times;</button>
-        </p>
+        <h2 class="mt-5 text-center"><%= @game.name %></h2>
+
+        <!--フラッシュメッセージ-->
+        <div class="alert alert-success">
+           <%= flash[:success] %><button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+        <div class="alert alert-danger">
+          <%= flash[:danger] %>
+        </div>
+
         <div class="mt-5 text-center">
-          <h2><%= @game.name %></h2>
           <h5>ジャンル：<%= @game.genre.name %></h5>
           <p><%= @game.explanation %></p>
           <div id="star-rate<%= @game.id %>">
@@ -35,7 +41,6 @@
           </script>
         </div>
       </header>
-
 
       <div class="col-md-8 mx-auto mt-5 text-center">
         <%# if current_user.reviews.nil? %>
@@ -102,7 +107,7 @@
                 });
               </script>
             <% if review.user == current_user %>
-              <%= link_to game_review_path(review.game, review), method: :delete do %>
+              <%= link_to game_review_path(review.game, review), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } do %>
                 <button class="btn btn-danger">削除</button>
               <% end %>
             <% end %>

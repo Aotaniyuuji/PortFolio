@@ -1,6 +1,7 @@
 class Public::ReviewsController < ApplicationController
   before_action :authenticate_user!, only: [:create,:update,:destroy]
   before_action :is_matching_login_user, only: [:update,:destroy]
+
   def create
     game = Game.find(params[:game_id])
     review = current_user.reviews.new(review_params)
@@ -9,6 +10,9 @@ class Public::ReviewsController < ApplicationController
       review.save
       flash[:success] = "投稿しました"
       redirect_to game_path(game)
+    else
+      flash[:danger] = "投稿に失敗しました"
+      redirect_to request.referer
     end
   end
 

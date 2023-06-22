@@ -13,7 +13,15 @@ class Public::UsersController < ApplicationController
     redirect_to user_path(user.id)
   end
 
-  def destroy
+  def check
+    @user = current_user
+  end
+
+  def withdrawal
+    @user = User.find(current_user.id)
+    @user.update(is_deleted: "true")
+    reset_session
+    redirect_to root_path
   end
 
   private

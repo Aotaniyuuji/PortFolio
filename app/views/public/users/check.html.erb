@@ -1,0 +1,17 @@
+<div class="container px-5">
+  <div class="row mt-5">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2 class="text-center"><strong>本当に退会しますか？</strong></h2>
+      <p>
+        退会すると、会員登録情報やこれまでのレビューが消えます。<br>
+        退会する場合は、「退会する」をクリックしてください。
+      </p>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col mx-auto text-center">
+      <span class="mr-5"><%= link_to "退会しない", user_path(current_user), class:"btn btn-primary" %></span>
+      <span><%= link_to "退会する", withdrawal_path,method: :patch, class:"btn btn-danger" %></span>
+    </div>
+  </div>
+</div>

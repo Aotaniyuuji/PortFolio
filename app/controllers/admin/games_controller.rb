@@ -5,8 +5,10 @@ class Admin::GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     if @game.save
+      flash[:success] = "投稿しました。"
       redirect_to admin_game_path(@game.id)
     else
+      flash[:danger] = "投稿に失敗しました。"
       redirect_to admin_games_path
     end
   end

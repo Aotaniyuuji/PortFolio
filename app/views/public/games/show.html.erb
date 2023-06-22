@@ -9,13 +9,14 @@
 
         <!--フラッシュメッセージ-->
         <% if flash[:success].present? %>
-        <div class="alert alert-success">
-           <%= flash[:success] %><button type="button" class="close" data-dismiss="alert">&times;</button>
-        </div>
-        <% else flash[:danger].present? %>
-        <div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>
-          <%= flash[:danger] %>
-        </div>
+          <div class="alert alert-success">
+             <%= flash[:success] %><button type="button" class="close" data-dismiss="alert">&times;</button>
+          </div>
+        <% end %>
+        <% if flash[:danger].present? %>
+          <div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash[:danger] %>
+          </div>
         <% end %>
 
         <div class="mt-5 text-center">

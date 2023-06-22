@@ -5,9 +5,9 @@ class Public::GamesController < ApplicationController
     if params[:genre_id]
       @games = Game.where(genre_id: params[:genre_id])
     else
-      @games = Game.page(params[:page])
+      @games = Game.all
     end
-  
+
 # ソート機能による並び替え
     if params[:latest]
       @games = Game.latest

@@ -5,6 +5,12 @@
 
     <div class="col-md-9 mx-auto">
       <h3 class="my-5 text-center">ゲーム一覧</h3>
+      <!--ソート機能-->
+      <p>
+        <%= link_to '新しい順', games_path(latest: "true") %>
+        |<%= link_to '古い順', games_path(old: "true") %>
+        |<%= link_to '評価の高い順', games_path(star_coutn: "true") %>
+      </p>
       <% @games.each do |game| %>
         <div class="card-group">
           <div class="card" style="width: 20rem;">

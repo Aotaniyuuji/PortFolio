@@ -5,6 +5,17 @@ class Public::GamesController < ApplicationController
     if params[:genre_id]
       @games = Game.where(genre_id: params[:genre_id])
     else
+      @games = Game.page(params[:page])
+    end
+  
+# ソート機能による並び替え
+    if params[:latest]
+      @games = Game.latest
+    elsif params[:old]
+      @games = Game.old
+    elsif params[:star_count]
+      @games = Game.star_count
+    else
       @games = Game.all
     end
   end

@@ -112,8 +112,9 @@
                 });
               </script>
             <% if review.user == current_user %>
+              <%= link_to "編集する", edit_game_review_path(review.game, review), class:"btn btn-success" %>
               <%= link_to game_review_path(review.game, review), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } do %>
-                <button class="btn btn-danger">削除</button>
+                <button class="btn btn-danger">削除する</button>
               <% end %>
             <% end %>
           </div>

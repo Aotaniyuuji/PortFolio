@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     get "about" => "homes#about"
     resources :users, only: [:show,:edit,:update]
     resources :games, only: [:index,:show] do
-      resources :reviews, only: [:create,:update,:destroy]
+      resources :reviews, only: [:create,:edit,:update,:destroy]
     end
   end
   get "check" => "public/users#check"

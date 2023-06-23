@@ -2,46 +2,45 @@
   <div class="row">
     <!--ジャンルリストの部分テンプレート-->
     <%= render "public/games/bygenre", genres: @genres %>
+
     <div class="col-md-8 mx-auto">
-      <header class="article-header entry-header">
-         <!--フラッシュメッセージ-->
-        <% if flash[:success].present? %>
-          <div class="alert alert-success">
-            <%= flash[:success] %><button type="button" class="close" data-dismiss="alert">&times;</button>
-          </div>
-        <% end %>
-        <h2 class="mt-5 text-center">
-          <%= @game.name %>
-          <span class="ml-5"><%= link_to '編集する',edit_admin_game_path(@game), class:"btn btn-success" %></span>
-        </h2>
-        <div><%= image_tag @game.image, size: "50*50" %></div>
-
-        <div class="mt-5 text-center">
-          <h5>ジャンル：<%= @game.genre.name %></h5>
-          <p><%= @game.explanation %></p>
-          <div id="star-rate<%= @game.id %>">
-            <p>レビュー<%= @game.reviews.count %>件</p>
-          </div>
-          <script>
-            $(document).on('turbolinks:load', function() {
-              let elem = document.querySelector('#star-rate<%= @game.id%>');
-              if (elem == null) return;
-
-              elem.innerHTML = ""
-              let opt = {
-                starOn: "<%= asset_path('star-on.png') %>",
-                starOff: "<%= asset_path('star-off.png') %>",
-                starHalf: "<%= asset_path('star-half.png') %>",
-                half: true,
-                readOnly: true,
-                score: <%= @game.reviews.average(:star).to_f.round(1) %>,
-                 //↑ 平均点を算出し、round関数で切り上げる
-              };
-              raty(elem, opt);
-            });
-          </script>
+      <!--フラッシュメッセージ-->
+      <% if flash[:success].present? %>
+        <div class="alert alert-success">
+          <%= flash[:success] %><button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
-      </header>
+      <% end %>
+      <h2 class="mt-5 text-center">
+        <%= @game.name %>
+        <span class="ml-5"><%= link_to '編集する',edit_admin_game_path(@game), class:"btn btn-success" %></span>
+      </h2>
+      <div class="text-center"><%= image_tag @game.image, class: "game_image" %></div>
+
+      <div class="mt-5 text-center">
+        <h5>ジャンル：<%= @game.genre.name %></h5>
+        <p><%= @game.explanation %></p>
+        <div id="average_star_<%= @game.id %>">
+          <p>レビュー<%= @game.reviews.count %>件</p>
+        </div>
+        <script>
+          $(document).on('turbolinks:load', function() {
+            let elem = document.querySelector('#average_star_<%= @game.id%>');
+            if (elem == null) return;
+
+            elem.innerHTML = ""
+            let opt = {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              half: true,
+              readOnly: true,
+              score: <%= @game.reviews.average(:star).to_f.round(1) %>,
+               //↑ 平均点を算出し、round関数で切り上げる
+            };
+            raty(elem, opt);
+          });
+        </script>
+      </div>
 
 
       <% @game.reviews.each do |review| %>

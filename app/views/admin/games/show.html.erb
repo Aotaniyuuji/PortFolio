@@ -5,11 +5,8 @@
 
     <div class="col-md-8 mx-auto">
       <!--フラッシュメッセージ-->
-      <% if flash[:success].present? %>
-        <div class="alert alert-success">
-          <%= flash[:success] %><button type="button" class="close" data-dismiss="alert">&times;</button>
-        </div>
-      <% end %>
+      <%= render "layouts/flash" %>
+
       <h2 class="mt-5 text-center">
         <%= @game.name %>
         <span class="ml-5"><%= link_to '編集する',edit_admin_game_path(@game), class:"btn btn-success" %></span>

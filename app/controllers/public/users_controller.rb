@@ -9,8 +9,13 @@ class Public::UsersController < ApplicationController
 
   def update
     user = User.find(params[:id])
-    user.update(user_params)
-    redirect_to user_path(user.id)
+    if user.update(user_params)
+      flash[:success] = "変更しました"
+      redirect_to user_path(user.id)
+    else
+      flash[:danger] = "変更に失敗しました"
+      render :edit
+    end
   end
 
   def check

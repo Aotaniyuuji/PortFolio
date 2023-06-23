@@ -22,12 +22,12 @@
         <div class="mt-5 text-center">
           <h5>ジャンル：<%= @game.genre.name %></h5>
           <p><%= @game.explanation %></p>
-          <div id="star-rate<%= @game.id %>">
+          <div id="average_star_<%= @game.id %>">
             <p>レビュー<%= @game.reviews.count %>件</p>
           </div>
           <script>
             $(document).on('turbolinks:load', function() {
-              let elem = document.querySelector('#star-rate<%= @game.id%>');
+              let elem = document.querySelector('#average_star_<%= @game.id%>');
               if (elem == null) return;
 
               elem.innerHTML = ""

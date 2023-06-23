@@ -68,7 +68,7 @@
                 });
               </script>
             <% if admin_signed_in? %>
-              <%= link_to game_review_path(review.game, review), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } do %>
+              <%= link_to admin_review_path(review.game, review), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } do %>
                 <button class="btn btn-danger">削除</button>
               <% end %>
 

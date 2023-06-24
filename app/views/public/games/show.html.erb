@@ -14,7 +14,6 @@
         <h5>ジャンル：<%= @game.genre.name %></h5>
         <p><%= @game.explanation %></p>
         <div id="average_star_<%= @game.id %>"></div>
-        <p>レビュー<%= @game.reviews.count %>件</p>
         <script>
           $(document).on('turbolinks:load', function() {
             let elem = document.querySelector('#average_star_<%= @game.id%>');

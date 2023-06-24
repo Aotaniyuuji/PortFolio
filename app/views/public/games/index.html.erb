@@ -16,7 +16,30 @@
           <div class="card" style="width: 20rem;">
             <div class="card-body">
               <h5 class="card-title"><%= game.name %></h5>
-              <p class="card-text"><%= game.explanation %></p>
+              <p class="card-text">
+                <%= game.explanation %>
+                <span>
+                  <div id="average_star_<%= game.id %>"></div>
+                  <script>
+                    $(document).on('turbolinks:load', function() {
+                      let elem = document.querySelector('#average_star_<%= game.id%>');
+                      if (elem == null) return;
+
+                      elem.innerHTML = ""
+                      let opt = {
+                        starOn: "<%= asset_path('star-on.png') %>",
+                        starOff: "<%= asset_path('star-off.png') %>",
+                        starHalf: "<%= asset_path('star-half.png') %>",
+                        half: true,
+                        readOnly: true,
+                        score: <%= game.reviews.average(:star).to_f.round(1) %>,
+                         //↑ 平均点を算出し、round関数で切り上げる
+                      };
+                      raty(elem, opt);
+                    });
+                  </script>
+                </span>
+              </p>
               <div class="d-inline"><%= link_to "詳細へ", game_path(game.id) %></div>
             </div>
           </div>

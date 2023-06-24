@@ -27,7 +27,13 @@ class Public::ReviewsController < ApplicationController
       redirect_to game_path(@review.game_id)
     else
       @game = Game.find(params[:game_id])
-      render :edit
+      flash[:danger] = ""
+      @review.errors.full_messages.each_with_index do |message, i|
+        flash[:danger] << message
+        flash[:danger] << "<br>" unless (@review.errors.full_messages.length == i+1)
+      end
+      redirect_to edit_game_review_path(@game,@review)
+      # render :edit
     end
   end
 

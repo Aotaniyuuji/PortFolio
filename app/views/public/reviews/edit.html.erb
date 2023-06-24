@@ -16,28 +16,26 @@
           <tr>
             <th></th>
             <td>
-              <% if @review.id.nil? %>
-                <div class="form-group" id="star">
-                  <%= f.label :star, "評価" %>
-                  <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
-                  <span id="star-rate"></span>
-                </div>
-                <script>
-                  $(document).on('turbolinks:load', function() {
-                    let elem = document.querySelector('#star-rate<%=  %>');
-                    if (elem == null) return;
+              <div class="form-group" id="star">
+                <%= f.label :star, "評価" %>
+                <span id="star-rate"></span>
+              </div>
+              <script>
+                $(document).on('turbolinks:load', function() {
+                  let elem = document.querySelector('#star-rate');
+                  if (elem == null) return;
 
-                    elem.innerHTML = ""
-                    let opt = {
-                      starOn: "<%= asset_path('star-on.png') %>",
-                      starOff: "<%= asset_path('star-off.png') %>",
-                      starHalf: "<%= asset_path('star-half.png') %>",
-                      scoreName: 'review[star]',
-                    };
-                    raty(elem, opt);
-                  });
-                </script>
-              <% end %>
+                  elem.innerHTML = ""
+                  let opt = {
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    scoreName: "review[star]",
+                    score: <%= @review.star %>
+                  };
+                  raty(elem, opt);
+                });
+              </script>
             </td>
           </tr>
           <tr>

@@ -1,17 +1,39 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 mx-auto">
-      <h4 class="mt-5">ユーザー情報</h4>
-      <table class="mt-5 table table-inverse table-bordered">
-        <tr>
-          <th>名前</th>
-          <td><%= @user.name %></td>
-        </tr>
-        <tr>
-          <th>メールアドレス</th>
-          <td><%= @user.email %></td>
-        </tr>
-      </table>
+      <h4 class="mt-5"><%= @user.name %>さんの詳細</h4>
+      <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch, local:true do |f| %>
+        <table class="mt-5 table table-inverse table-borderless">
+          <tr>
+            <th>会員ID</th>
+            <td><%= @user.id %></td>
+          </tr>
+          <tr>
+            <th>名前</th>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :is_deleted, "ステータス" %></th>
+            <td>
+              <%= f.radio_button :is_deleted, false %>
+              <%= f.label :is_deleted, "有効にする" %>
+            </td>
+            <td>
+              <%= f.radio_button :is_deleted, true %>
+              <%= f.label :is_deleted, "退会済みにする" %>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center" colspan="3">
+              <%= f.submit "更新する", class: "btn btn-success" %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
     </div>
   </div>
 </div>

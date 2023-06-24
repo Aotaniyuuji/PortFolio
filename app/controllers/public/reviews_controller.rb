@@ -16,17 +16,18 @@ class Public::ReviewsController < ApplicationController
   end
 
   def edit
-    @game = Game.find(params[:id])
+    @game = Game.find(params[:game_id])
     @review = Review.find(params[:id])
   end
 
   def update
-    review = Review.find(params[:id])
-    if review.update(review_params)
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
       flash[:success] = "レビューを編集しました。"
-      redirect_to game_path(review.game_id)
+      redirect_to game_path(@review.game_id)
     else
       flash[:danger] = "更新できませんでした。"
+      @game = Game.find(params[:game_id])
       render :edit
     end
   end

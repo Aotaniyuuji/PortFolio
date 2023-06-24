@@ -33,7 +33,6 @@ class Public::ReviewsController < ApplicationController
         flash[:danger] << "<br>" unless (@review.errors.full_messages.length == i+1)
       end
       redirect_to edit_game_review_path(@game,@review)
-      # render :edit
     end
   end
 

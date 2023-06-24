@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 mx-auto">
+      <%= render "layouts/flash" %>
       <h4 class="mt-5"><%= @user.name %>さんの詳細</h4>
       <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch, local:true do |f| %>
         <table class="mt-5 table table-inverse table-borderless">

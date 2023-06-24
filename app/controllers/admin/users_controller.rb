@@ -13,6 +13,7 @@ class Admin::UsersController < ApplicationController
       flash[:success] = "ステータスを更新しました"
       redirect_to admin_user_path(user.id)
     else
+      flash[:danger] = "更新に失敗しました。"
       redirect_to request.referer
     end
   end

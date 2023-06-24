@@ -3,7 +3,7 @@
     <!--ジャンルリストの部分テンプレート-->
     <%= render "bygenre", genres: @genres %>
 
-    <div class="col-md-9 mx-auto">
+    <div class="col-md-8 mx-auto">
       <h3 class="my-5 text-center">ゲーム一覧</h3>
       <!--ソート機能-->
       <p>
@@ -24,5 +24,7 @@
       <% end %>
     </div>
   </div>
-  <div class="text-center"><%= paginate @games %></div>
+  <div class="row">
+    <div class="text-center"><%= paginate @games %></div>
+  </div>
 </div>

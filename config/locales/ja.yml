@@ -2,6 +2,6 @@ ja:
   activerecord:
     models:
       review:
-    attribute:
+    attributes:
       title: "タイトル"
       comment: "コメント"

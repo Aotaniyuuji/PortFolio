@@ -26,7 +26,6 @@ class Public::ReviewsController < ApplicationController
       flash[:success] = "レビューを編集しました。"
       redirect_to game_path(@review.game_id)
     else
-      flash[:danger] = "更新できませんでした。"
       @game = Game.find(params[:game_id])
       render :edit
     end

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PF</title>
+    <title>My_Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -15,7 +15,7 @@
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-dark bg-info">
         <div class="container">
-          <a class="navbar-brand p-3" href="/">
+          <a class="navbar-brand p-3 text-dark" href="/">
             <i class="fas fa-home"></i>
             MyGame
           </a>
@@ -28,45 +28,71 @@
               <% if user_signed_in? %>
                 <p class="text-light"><%= flash[:notice] %></p>
                 <li class="nav-item">
-                  <%= link_to '概要', about_path, class: 'nav-link text-light' %>
+                  <%= link_to about_path, class: 'nav-link text-dark' do %>
+                    概要
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-light' %>
+                  <%= link_to  user_path(current_user.id), class: 'nav-link text-dark' do %>
+                    マイページ
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'ゲーム一覧', games_path, class: 'nav-link text-light' %>
+                  <%= link_to games_path, class: 'nav-link text-dark' do %>
+                    <i class="fa-solid fa-gamepad"></i>ゲーム一覧
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
+                  <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
+                    ログアウト
+                  <% end %>
                 </li>
               <% elsif admin_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to '概要', about_path, class: 'nav-link text-light' %>
+                  <%= link_to about_path, class: 'nav-link text-dark' do %>
+                    概要
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'ユーザー一覧', admin_users_path, class: 'nav-link text-light' %>
+                  <%= link_to admin_users_path, class: 'nav-link text-dark' do %>
+                    ユーザー一覧
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'ジャンル一覧', admin_genres_path, class: 'nav-link text-light' %>
+                  <%= link_to admin_genres_path, class: 'nav-link text-dark' do %>
+                    ジャンル一覧
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'ゲーム一覧', admin_games_path, class: 'nav-link text-light' %>
+                  <%= link_to admin_games_path, class: 'nav-link text-dark' do %>
+                    <i class="fa-solid fa-gamepad"></i>ゲーム一覧
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'ログアウト', destroy_admin_session_path, class: 'nav-link text-light' %>
+                  <%= link_to destroy_admin_session_path, class: 'nav-link text-dark' do %>
+                    ログアウト
+                  <% end %>
                 </li>
               <% else %>
                 <li class="nav-item">
-                  <%= link_to "概要", about_path, class: 'nav-link text-light' %>
+                  <%= link_to about_path, class: 'nav-link text-dark' do %>
+                    概要
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light' %>
+                  <%= link_to new_user_registration_path, class: 'nav-link text-dark' do %>
+                    新規登録
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light' %>
+                  <%= link_to new_user_session_path, class: 'nav-link text-dark' do %>
+                    ログイン
+                  <% end %>
                 </li>
                 <li>
-                  <%= link_to 'ゲストログイン', users_guest_sign_in_path, class: "nav-link text-light", method: :post %>
+                  <%= link_to users_guest_sign_in_path, class: "nav-link text-dark", method: :post do %>
+                    ゲストログイン
+                  <% end %>
                 </li>
               <% end %>
             </ul>
@@ -83,7 +109,7 @@
       <div class="container">
         <div class="row no-gutters">
           <div class="col-md-8 mx-auto">
-            <h6 class="text-white text-center mt-2 mb-3">©My Game</h6>
+            <h6 class="text-dark text-center mt-2 mb-3">©My Game</h6>
           </div>
         </div>
       </div>

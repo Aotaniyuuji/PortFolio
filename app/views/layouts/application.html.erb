@@ -29,12 +29,12 @@
                 <p class="text-light"><%= flash[:notice] %></p>
                 <li class="nav-item">
                   <%= link_to about_path, class: 'nav-link text-dark' do %>
-                    概要
+                    <i class="fa-solid fa-circle-exclamation"></i>概要
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to  user_path(current_user.id), class: 'nav-link text-dark' do %>
-                    マイページ
+                    <i class="fa-solid fa-user"></i>マイページ
                   <% end %>
                 </li>
                 <li class="nav-item">
@@ -44,18 +44,18 @@
                 </li>
                 <li class="nav-item">
                   <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
-                    ログアウト
+                    <i class="fa-solid fa-right-from-bracket"></i>ログアウト
                   <% end %>
                 </li>
               <% elsif admin_signed_in? %>
                 <li class="nav-item">
                   <%= link_to about_path, class: 'nav-link text-dark' do %>
-                    概要
+                    <i class="fa-solid fa-circle-exclamation"></i>概要
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to admin_users_path, class: 'nav-link text-dark' do %>
-                    ユーザー一覧
+                    <i class="fa-solid fa-user"></i>ユーザー一覧
                   <% end %>
                 </li>
                 <li class="nav-item">
@@ -70,28 +70,28 @@
                 </li>
                 <li class="nav-item">
                   <%= link_to destroy_admin_session_path, class: 'nav-link text-dark' do %>
-                    ログアウト
+                    <i class="fa-solid fa-right-from-bracket"></i>ログアウト
                   <% end %>
                 </li>
               <% else %>
                 <li class="nav-item">
                   <%= link_to about_path, class: 'nav-link text-dark' do %>
-                    概要
+                    <i class="fa-solid fa-circle-exclamation"></i>概要
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to new_user_registration_path, class: 'nav-link text-dark' do %>
-                    新規登録
+                    <i class="fa-solid fa-user-plus"></i>新規登録
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to new_user_session_path, class: 'nav-link text-dark' do %>
-                    ログイン
+                    <i class="fa-solid fa-right-to-bracket"></i>ログイン
                   <% end %>
                 </li>
                 <li>
                   <%= link_to users_guest_sign_in_path, class: "nav-link text-dark", method: :post do %>
-                    ゲストログイン
+                    <i class="fa-solid fa-right-to-bracket"></i>ゲストログイン
                   <% end %>
                 </li>
               <% end %>

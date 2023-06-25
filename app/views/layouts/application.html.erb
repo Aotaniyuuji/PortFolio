@@ -26,7 +26,6 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
-                <p class="text-light"><%= flash[:notice] %></p>
                 <li class="nav-item">
                   <%= link_to about_path, class: 'nav-link text-dark' do %>
                     <i class="fa-solid fa-circle-exclamation"></i>概要

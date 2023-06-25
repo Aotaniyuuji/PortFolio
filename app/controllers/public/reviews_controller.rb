@@ -6,9 +6,16 @@ class Public::ReviewsController < ApplicationController
     game = Game.find(params[:game_id])
     review = current_user.reviews.new(review_params)
     review.game_id = game.id
-    if review.save
-      flash[:success] = "投稿しました"
-      redirect_to game_path(game)
+    review_count = Review.where(game_id: params[:game_id]).where(user_id: current_user.id).count
+    if review.valid?
+      if review_count < 1
+        review.save
+        flash[:success] = "投稿しました"
+        redirect_to game_path(game)
+      else
+        flash[:danger] = "レビューの投稿は一度までです"
+        redirect_to request.referer
+      end
     else
       flash[:danger] = "投稿に失敗しました"
       redirect_to request.referer

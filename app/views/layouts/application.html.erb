@@ -80,6 +80,11 @@
                   <% end %>
                 </li>
                 <li class="nav-item">
+                  <%= link_to games_path, class: 'nav-link text-dark' do %>
+                    <i class="fa-solid fa-gamepad"></i>ゲーム一覧
+                  <% end %>
+                </li>
+                <li class="nav-item">
                   <%= link_to new_user_registration_path, class: 'nav-link text-dark' do %>
                     <i class="fa-solid fa-user-plus"></i>新規登録
                   <% end %>
@@ -101,8 +106,10 @@
       </nav>
     </header>
 
+
     <main class="mb-auto">
-    <%= yield %>
+      <%= render "layouts/flash" %>
+      <%= yield %>
     </main>
 
     <footer class="bg-info text-white pt-5 pb-4">

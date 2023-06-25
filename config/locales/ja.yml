@@ -3,12 +3,13 @@ ja:
     models:
       review:
     attributes:
-      title: "タイトル"
-      comment: "コメント"
-      views:
-        pagination:
-          first: "&laquo; 最初"
-          last: "最後 &raquo;"
-          previous: "&lsaquo; 前"
-          next: "次 &rsaquo;"
-          truncate: "..."
+      review:
+        title: "タイトル"
+        comment: "コメント"
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."

@@ -14,8 +14,10 @@
       <% @games.each do |game| %>
         <div class="card-group">
           <div class="card" style="width: 20rem;">
+            <%= link_to game_path(game.id), class: "hover text-dark text-decoration-none" do %>
             <div class="card-body">
               <h5 class="card-title"><%= game.name %></h5>
+              <p class="card-subtitle">投稿日<%= game.created_at.strftime('%Y/%m/%d') %></p>
               <p class="card-text">
                 <%= game.explanation %>
                 <span>
@@ -40,8 +42,8 @@
                   </script>
                 </span>
               </p>
-              <div class="d-inline"><%= link_to "詳細へ", game_path(game.id) %></div>
             </div>
+            <% end %>
           </div>
         </div>
       <% end %>

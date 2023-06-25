@@ -4,11 +4,14 @@
     <!--ジャンルリストの部分テンプレート-->
     <%= render "bygenre", genres: @genres %>
     <div class="col-md-8 mx-auto">
-      <!--フラッシュメッセージ-->
-      <%= render "layouts/flash" %>
-
       <h2 class="mt-5 text-center"><%= @game.name %></h2>
-      <div class="text-center"><%= image_tag @game.image, class: "game_image" %></div>
+      <div class="text-center">
+        <% if @game.image.attached? %>
+          <%= image_tag @game.image, class: "game_image" %>
+        <% else %>
+          <%= image_tag 'noimage', class: "game_image" %>
+        <% end %>
+      </div>
 
       <div class="mt-5 text-center">
         <h5>ジャンル：<%= @game.genre.name %></h5>

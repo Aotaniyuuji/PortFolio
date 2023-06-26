@@ -90,8 +90,7 @@ Review.create!(
    user_id: 1,
    game_id: 1,
    title: '神作！',
-   comment: '和の世界観がたまらない。グラフィックもすごく良くやって損はないと思う'
-   star: '5.0'
+   comment: '和の世界観がたまらない。グラフィックもすごく良いのでやって損はないと思う'
 )
 
 Review.create!(
@@ -99,7 +98,6 @@ Review.create!(
    game_id: 3,
    title: 'フロムらしい',
    comment: 'キャラメイクから世界観から全てが好き！やり込み要素も豊富で長く遊べるゲームです。',
-   star: '5.0'
 )
 
 Review.create!(
@@ -107,7 +105,6 @@ Review.create!(
    game_id: 2,
    title: '神ゲー',
    comment: 'オリジナルと比べホラー感が増しているし、アクションも豊富で臨場感がすごい！',
-   star: '5.0'
 )
 
 Review.create!(
@@ -115,5 +112,4 @@ Review.create!(
    game_id: 1,
    title: '映像はいいが、、、',
    comment: 'かなり難しいゲームでやる気が途中で失せてしまった',
-   star: '2'
 )

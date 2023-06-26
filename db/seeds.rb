@@ -79,16 +79,41 @@ game = Game.create!(
 game.image.attach(io: File.open(Rails.root.join('app/asset/images/noimage.jpeg')),filename: 'noimage.jpeg')
 
 game = Game.create!(
-   name: 'バイオハザードRE:4',
-   genre_id: 2,
-   explanation: 'バイオ４のリメイク作品！ 期待を超える個人的神ゲー！！'
+   name: 'Tails of ARISE',
+   genre_id: 1,
+   explanation: 'テイルズシリーズ最新作！バトルシステムは面白いが慣れるまでは少し難しいかも？'
 )
 game.image.attach(io: File.open(Rails.root.join('app/asset/images/noimage.jpeg')),filename: 'noimage.jpeg')
 
 puts "________ create Reviews"
 Review.create!(
-   title: '名作！',
-   comment: 'キャラメイクから世界観から全てが好き！
-   やり込み要素も豊富で長く遊べるゲームです。',
-   game_id:
-   )
+   user_id: 1,
+   game_id: 1,
+   title: '神作！',
+   comment: '和の世界観がたまらない。グラフィックもすごく良くやって損はないと思う'
+   star: '5.0'
+)
+
+Review.create!(
+   user_id: 2,
+   game_id: 3,
+   title: 'フロムらしい',
+   comment: 'キャラメイクから世界観から全てが好き！やり込み要素も豊富で長く遊べるゲームです。',
+   star: '5.0'
+)
+
+Review.create!(
+   user_id: 5,
+   game_id: 2,
+   title: '神ゲー',
+   comment: 'オリジナルと比べホラー感が増しているし、アクションも豊富で臨場感がすごい！',
+   star: '5.0'
+)
+
+Review.create!(
+   user_id: 4,
+   game_id: 1,
+   title: '映像はいいが、、、',
+   comment: 'かなり難しいゲームでやる気が途中で失せてしまった',
+   star: '2'
+)

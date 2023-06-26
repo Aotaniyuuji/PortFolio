@@ -25,10 +25,10 @@ User.create!(
 puts "________ create Genre"
 Genre.create!(
    [
-      {name: "アクションRPG", is_active: true},
-      {name: "ホラー", is_active: true},
-      {name: "ソシャゲ", is_active: true},
-      {name: 'AVG', is_active: true}
+      {name: "アクションRPG"},
+      {name: "ホラー"},
+      {name: "ソシャゲ"},
+      {name: 'AVG'}
    ]
 )
 

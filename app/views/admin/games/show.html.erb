@@ -1,21 +1,22 @@
 <div class="container">
   <div class="row">
+
     <!--ジャンルリストの部分テンプレート-->
     <%= render "public/games/bygenre", genres: @genres %>
-
     <div class="col-md-8 mx-auto">
-      <h2 class="mt-5 text-center">
-        <%= @game.name %>
-        <span class="ml-5"><%= link_to '編集する',edit_admin_game_path(@game), class:"btn btn-success" %></span>
-      </h2>
-      <div class="text-center"><%= image_tag @game.image, class: "game_image" %></div>
+      <h2 class="mt-5 text-center"><%= @game.name %></h2>
+      <div class="text-center">
+        <% if @game.image.attached? %>
+          <%= image_tag @game.image, class: "game_image" %>
+        <% else %>
+          <%= image_tag 'noimage', class: "game_image" %>
+        <% end %>
+      </div>
 
       <div class="mt-5 text-center">
         <h5>ジャンル：<%= @game.genre.name %></h5>
         <p><%= @game.explanation %></p>
-        <div id="average_star_<%= @game.id %>">
-          <p>レビュー<%= @game.reviews.count %>件</p>
-        </div>
+        <div id="average_star_<%= @game.id %>"></div>
         <script>
           $(document).on('turbolinks:load', function() {
             let elem = document.querySelector('#average_star_<%= @game.id%>');
@@ -36,18 +37,26 @@
         </script>
       </div>
 
-
-      <% @game.reviews.each do |review| %>
-      <table class="table table-bordered">
-        <tr>
-          <div class="mt-5 text-center">
-            <p><%= review.user.name %></p>
-            <%= review.title %>
-            <%= review.comment %>
-            <div id="star-rate<%= review.id %>"></div>
-            <script>
+      <div class="col-md-8 mt-5">
+        <% if user_signed_in? %>
+          <%= form_with model: [@game, @review] do |f| %>
+            <div class="form-group">
+              <%= f.label :title, "レビュータイトル" %><br>
+              <%= f.text_field :title, placeholder: "タイトル", size: '30x10' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :comment, "レビューコメント" %>
+              <%= f.text_area :comment, rows: '3',placeholder: "コメントを入力", size: '50x5' %><br>
+            </div>
+            <% if @review.id.nil? %>
+              <div class="form-group" id="star">
+                <%= f.label :star, "評価" %>
+                <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
+                <span id="post_raty"></span>
+              </div>
+              <script>
                 $(document).on('turbolinks:load', function() {
-                  let elem = document.querySelector('#star-rate<%= review.id %>');
+                  let elem = document.querySelector('#post_raty');
                   if (elem == null) return;
 
                   elem.innerHTML = ""
@@ -55,22 +64,73 @@
                     starOn: "<%= asset_path('star-on.png') %>",
                     starOff: "<%= asset_path('star-off.png') %>",
                     starHalf: "<%= asset_path('star-half.png') %>",
-                    score: <%= review.star %>,
-                    readOnly: true
+                    scoreName: 'review[star]',
                   };
                   raty(elem, opt);
                 });
               </script>
-            <% if admin_signed_in? %>
-              <%= link_to admin_review_path(review.game, review), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } do %>
-                <button class="btn btn-danger">削除する</button>
-              <% end %>
-
             <% end %>
-          </div>
-        </tr>
+            <div class="form-group">
+              <%= f.submit "送信する", class: 'btn btn-primary' %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <h4 class="p-3 border-bottom border-primary border-3">コメント一覧</h4>
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th>投稿者名</th>
+            <th>レビュータイトル</th>
+            <th>レビューコメント</th>
+            <th>評価</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @game.reviews.each do |review| %>
+          <tr>
+            <div class="mt-5 text-center">
+              <td><%= review.user.name %></td>
+              <td><%= review.title %></td>
+              <td><%= review.comment %></td>
+              <td>
+                <div id="star-rate<%= review.id %>"></div>
+                <script>
+                    $(document).on('turbolinks:load', function() {
+                      let elem = document.querySelector('#star-rate<%= review.id %>');
+                      if (elem == null) return;
+
+                      elem.innerHTML = ""
+                      let opt = {
+                        starOn: "<%= asset_path('star-on.png') %>",
+                        starOff: "<%= asset_path('star-off.png') %>",
+                        starHalf: "<%= asset_path('star-half.png') %>",
+                        score: <%= review.star %>,
+                        readOnly: true
+                      };
+                      raty(elem, opt);
+                    });
+                  </script>
+                </td>
+                <% if admin_signed_in? %>
+                  <td>
+                    <%= link_to admin_review_path(review.game, review), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } do %>
+                      <button class="btn btn-danger">削除する</button>
+                    <% end %>
+                  </td>
+                <% end %>
+            </div>
+          </tr>
+          <% end %>
+        </tbody>
       </table>
-      <% end %>
     </div>
   </div>
 </div>

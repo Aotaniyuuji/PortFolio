@@ -13,13 +13,10 @@ class Game < ApplicationRecord
   # scope :star_count, -> { joins(:reviews).order('reviews.star desc') }
 
   def self.star_count
-    game_ids = Review.all.group_by(&:game_id).map { |k, v|
-      stars = v.pluck(:star)
-      v = stars.sum / stars.size
-      { k => v}
-    }.sort_by { |_, v| v }.map(&:keys).flatten
-
-    games = game_ids.map { |id_hash| Game.find(id_hash) }
+    averages = Game.all.map {|game| { id: game.id, ave: game.reviews.average(:star).to_f.round(1)}}
+    sort_averages = averages.sort { |a, b| b[:ave] <=> a[:ave] }
+    sort_ids = sort_averages.map { |ave| ave[:id] }
+    Game.find(sort_ids).sort_by{ |o| sort_ids.index(o.id)}
   end
 
   def self.looks(search, word)

@@ -41,12 +41,12 @@
         <% if user_signed_in? %>
           <%= form_with model: [@game, @review] do |f| %>
             <div class="form-group">
-              <%= f.label :title, "レビュータイトル" %>
-              <%= f.text_field :title, placeholder: "タイトル" %>
+              <%= f.label :title, "レビュータイトル" %><br>
+              <%= f.text_field :title, placeholder: "タイトル", size: '30x10' %>
             </div>
             <div class="form-group">
               <%= f.label :comment, "レビューコメント" %>
-              <%= f.text_area :comment, rows: '3',placeholder: "コメント" %><br>
+              <%= f.text_area :comment, rows: '3',placeholder: "コメントを入力", size: '50x5' %><br>
             </div>
             <% if @review.id.nil? %>
               <div class="form-group" id="star">

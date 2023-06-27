@@ -14,7 +14,7 @@
       <!--ゲーム一覧の表示-->
       <% @games.each do |game| %>
         <div class="card-group">
-          <div class="card" style="width: 20rem;">
+          <div class="card mb-2" style="width: 20rem;">
             <%= link_to game_path(game.id), class: "hover text-dark text-decoration-none" do %>
             <div class="card-body">
               <h5 class="card-title"><%= game.name %></h5>
@@ -53,7 +53,7 @@
   <!--ページネーション-->
   <div class="row">
     <div class="col-md-8 offset-md-5">
-      <div class="text-center"><%= paginate @games %></div>
+      <div class="p-3 text-center"><%= paginate @games %></div>
     </div>
   </div>
 </div>

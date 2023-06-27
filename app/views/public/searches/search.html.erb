@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-10 mx-auto">
+    <div class="col mx-auto">
       <h2 class="mt-5">検索結果</h2>
 
-      <table class="table table-hover table-inverse">
+      <table class="table table-hover">
         <thead>
           <tr>
-            <th>タイトル</th>
-            <th>概要</th>
+            <th class="col-md-2">タイトル</th>
+            <th class="col-md-6">概要</th>
             <th>評価</th>
             <th>レビュー</th>
           </tr>
@@ -22,9 +22,10 @@
               </td>
               <td><%= game.explanation %></td>
               <td>
+                <span id="average_star_<%= game.id %>"></span>
                 <script>
                   $(document).on('turbolinks:load', function() {
-                    let elem = document.querySelector('#star-rate<%= game.id%>');
+                    let elem = document.querySelector('#average_star_<%= game.id%>');
                     if (elem == null) return;
 
                     elem.innerHTML = ""

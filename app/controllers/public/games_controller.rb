@@ -11,7 +11,7 @@ class Public::GamesController < ApplicationController
     elsif params[:old]
       @games = Game.old.page(params[:page]).per(5)
     elsif params[:star_count]
-      @games = Game.star_count.page(params[:page]).per(5)
+      @games = Kaminari.paginate_array(Game.star_count).page(params[:page]).per(5)
     else
       @games = Game.page(params[:page]).per(5)
     end

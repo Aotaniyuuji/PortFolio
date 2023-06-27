@@ -1,4 +1,6 @@
 class Admin::GamesController < ApplicationController
+  before_action:authenticate_admin!
+  
   def new
     @game = Game.new
   end

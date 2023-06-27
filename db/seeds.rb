@@ -39,14 +39,14 @@ game = Game.create!(
    explanation: 'フロムソフトウェアの代表作！
    革新的なバトルシステムが楽しすぎる！日本ゲーム大賞2019優秀賞受賞！'
 )
-game.image.attach(io: File.open(Rails.root.join('app/asset/images/noimage.jpg')),filename: 'noimage.jpg')
+game.image.attach(io: File.open(Rails.root.join('app/assets/images/noimage.jpg')),filename: 'noimage.jpg')
 
 game = Game.create!(
    name: 'バイオハザードRE:4',
    genre_id: 2,
    explanation: 'バイオ４のリメイク作品！ 期待を超える個人的神ゲー！！'
 )
-game.image.attach(io: File.open(Rails.root.join('app/asset/images/noimage.jpg')),filename: 'noimage.jpg')
+game.image.attach(io: File.open(Rails.root.join('app/assets/images/noimage.jpg')),filename: 'noimage.jpg')
 
 game = Game.create!(
    name: 'ELDEN RING',
@@ -54,7 +54,7 @@ game = Game.create!(
    explanation: 'フロムソフトウェアの死にゲー最新作！
    世界観良し！アクション性良し！バトル良し！操作性！日本ゲーム大賞2022受賞!'
 )
-game.image.attach(io: File.open(Rails.root.join('app/asset/images/noimage.jpg')),filename: 'noimage.jpg')
+game.image.attach(io: File.open(Rails.root.join('app/assets/images/noimage.jpg')),filename: 'noimage.jpg')
 
 game = Game.create!(
    name: 'モンスターハンターワールド：Ice Borne',
@@ -62,28 +62,28 @@ game = Game.create!(
    explanation: '過去一やり込んだシリーズ！
    新規のモンスターが多く、ハンターのアクションも多彩！'
 )
-game.image.attach(io: File.open(Rails.root.join('app/asset/images/noimage.jpg')),filename: 'noimage.jpg')
+game.image.attach(io: File.open(Rails.root.join('app/assets/images/noimage.jpg')),filename: 'noimage.jpg')
 
 game = Game.create!(
    name: '原神',
    genre_id: 3,
    explanation: 'オープンワールドRPG！基本無料なので気軽に遊べる。後キャラデザインがいい'
 )
-game.image.attach(io: File.open(Rails.root.join('app/asset/images/noimage.jpg')),filename: 'noimage.jpg')
+game.image.attach(io: File.open(Rails.root.join('app/assets/images/noimage.jpg')),filename: 'noimage.jpg')
 
 game = Game.create!(
    name: 'あつまれ　どうぶつの森',
    genre_id: 4,
    explanation: 'どう森最新作！自分だけの島づくりができるアドベンチャーゲーム'
 )
-game.image.attach(io: File.open(Rails.root.join('app/asset/images/noimage.jpg')),filename: 'noimage.jpg')
+game.image.attach(io: File.open(Rails.root.join('app/assets/images/noimage.jpg')),filename: 'noimage.jpg')
 
 game = Game.create!(
    name: 'Tails of ARISE',
    genre_id: 1,
    explanation: 'テイルズシリーズ最新作！バトルシステムは面白いが慣れるまでは少し難しいかも？'
 )
-game.image.attach(io: File.open(Rails.root.join('app/asset/images/noimage.jpg')),filename: 'noimage.jpg')
+game.image.attach(io: File.open(Rails.root.join('app/assets/images/noimage.jpg')),filename: 'noimage.jpg')
 
 puts "________ create Reviews"
 Review.create!(

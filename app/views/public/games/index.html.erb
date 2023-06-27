@@ -9,8 +9,9 @@
       <p>
         <%= link_to '新しい順', games_path(latest: "true") %>
         |<%= link_to '古い順', games_path(old: "true") %>
-        |<%= link_to '評価の高い順', games_path(star_coutn: "true") %>
+        |<%= link_to '評価の高い順', games_path(star_count: "true") %>
       </p>
+      <!--ゲーム一覧の表示-->
       <% @games.each do |game| %>
         <div class="card-group">
           <div class="card" style="width: 20rem;">
@@ -49,6 +50,7 @@
       <% end %>
     </div>
   </div>
+  <!--ページネーション-->
   <div class="row">
     <div class="col-md-8 offset-md-5">
       <div class="text-center"><%= paginate @games %></div>

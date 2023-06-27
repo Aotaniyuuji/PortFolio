@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action:authenticate_user!
-  before_action:is_matching_login_user
+  before_action:is_matching_login_user, except:[:check,:withdrawal]
 
   def show
     @user = User.find(params[:id])
@@ -22,11 +22,10 @@ class Public::UsersController < ApplicationController
   end
 
   def check
-    @user = current_user
   end
 
   def withdrawal
-    @user = User.find(current_user.id)
+    @user = current_user
     @user.update(is_deleted: "true")
     reset_session
     redirect_to root_path

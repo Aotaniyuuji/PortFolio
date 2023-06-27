@@ -4,9 +4,6 @@
     <%= render "public/games/bygenre", genres: @genres %>
 
     <div class="col-md-8 mx-auto">
-      <!--フラッシュメッセージ-->
-      <%= render "layouts/flash" %>
-
       <h2 class="mt-5 text-center">
         <%= @game.name %>
         <span class="ml-5"><%= link_to '編集する',edit_admin_game_path(@game), class:"btn btn-success" %></span>
@@ -66,7 +63,7 @@
               </script>
             <% if admin_signed_in? %>
               <%= link_to admin_review_path(review.game, review), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } do %>
-                <button class="btn btn-danger">削除</button>
+                <button class="btn btn-danger">削除する</button>
               <% end %>
 
             <% end %>

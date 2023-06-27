@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     root :to => "homes#top"
     get "about" => "homes#about"
     resources :users, only: [:show,:edit,:update]
+    get 'users' => redirect("/users/sign_up")
     resources :games, only: [:index,:show] do
       resources :reviews, only: [:create,:edit,:update,:destroy]
     end

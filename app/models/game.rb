@@ -11,7 +11,8 @@ class Game < ApplicationRecord
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}
   # scope :star_count, -> { joins(:reviews).order('reviews.star desc') }
-
+  
+  # 評価の高い順に並び替え
   def self.star_count
     averages = Game.all.map {|game| { id: game.id, ave: game.reviews.average(:star).to_f.round(1)}}
     sort_averages = averages.sort { |a, b| b[:ave] <=> a[:ave] }

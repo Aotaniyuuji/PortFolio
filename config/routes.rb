@@ -20,8 +20,9 @@ Rails.application.routes.draw do
     get "about" => "homes#about"
     resources :users, only: [:index,:show,:edit,:update]
     resources :genres, only: [:index,:create,:edit,:update]
-    resources :games, only: [:index,:new,:create,:show,:edit,:update,:destroy]
-    resources :reviews, only: [:show,:edit,:update,:destroy]
+    resources :games, only: [:index,:new,:create,:show,:edit,:update,:destroy] do
+      resources :reviews, only: [:show,:edit,:update,:destroy]
+    end
   end
 
   scope module: :public do

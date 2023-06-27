@@ -1,6 +1,6 @@
 class Public::ReviewsController < ApplicationController
-  before_action :authenticate_user!, only: [:create,:update,:destroy]
-  before_action :is_matching_login_user, only: [:update,:destroy]
+  before_action :authenticate_user!, only: [:create,:edit,:update,:destroy]
+  before_action :is_matching_login_user, only: [:edit,:update,:destroy]
 
   def create
     game = Game.find(params[:game_id])
@@ -59,7 +59,7 @@ class Public::ReviewsController < ApplicationController
   def is_matching_login_user
     review = Review.find(params[:id])
     unless review.user_id == current_user.id
-      render :edit
+      redirect_to game_path(review.game_id)
     end
   end
 end

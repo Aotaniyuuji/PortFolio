@@ -1,24 +1,27 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト名：My_Game
 
-Things you may want to cover:
+### サイトテーマ
+* ゲームのレビューサイト
 
-* Ruby version
+### テーマを選んだ理由
+普段からゲームを好きでプレイしているのですが飽き性な部分があり、物によっては
+一周目もクリアせずにやめてしまう事もあります。それがもったいないと思っていました。
+そこでゲームのレビューサイトで他の方からのコメントでまだ知らない要素や遊び方などを教えていただくことで
+もう一度やってみようと思えるのではないかと思い、作ることにしました。
+また、普段ゲームをしない方にとっては始めるきっかけになればと思います。
 
-* System dependencies
+### ターゲットユーザ
+* 自分自身
+* 普段ゲームをしない方
+* 一つのジャンルのゲームしかプレイしたことないという方
 
-* Configuration
+### 利用シーン
+* 新しくプレイするゲームを探す時
+* 小ネタや隠し要素などを知りたい時
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 開発環境
+* IDE:Cloud9
+* 言語:HTML,CSS,Ruby,JavaScript,SQL
+* フレームワーク: Ruby on Rails

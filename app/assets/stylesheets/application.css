@@ -13,6 +13,3 @@
  *= require_tree .
  *= require_self
  */
-.main-container {
-  background-image: url("<%= asset_path('game.jpg') %>")
-}
